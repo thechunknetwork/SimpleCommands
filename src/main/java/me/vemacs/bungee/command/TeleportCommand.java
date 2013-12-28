@@ -8,16 +8,14 @@ import net.md_5.bungee.api.plugin.Command;
 public class TeleportCommand extends Command {
     private String server;
 
-    public TeleportCommand(String name, String server, String... aliases) {
-        super(name, null, aliases);
+    public TeleportCommand(String name, String server) {
+        super(name);
         this.server = server;
     }
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (sender instanceof ProxiedPlayer) {
-            if (ProxyServer.getInstance().getServerInfo(server) != null)
+        if (sender instanceof ProxiedPlayer && ProxyServer.getInstance().getServerInfo(server) != null)
                 ((ProxiedPlayer) sender).connect(ProxyServer.getInstance().getServerInfo(server));
-        }
     }
 }

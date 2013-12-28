@@ -2,6 +2,7 @@ package me.vemacs.bungee;
 
 import lombok.Getter;
 import me.vemacs.bungee.command.ScCommand;
+import me.vemacs.bungee.command.TeleportCommand;
 import me.vemacs.bungee.command.TidbitCommand;
 import me.vemacs.bungee.misc.ConfigUtils;
 import me.vemacs.bungee.misc.providers.BungeeCordProvider;
@@ -20,10 +21,10 @@ public class SimpleCommands extends Plugin {
     private static SimpleCommands plugin;
     @Getter
     private static ServerInfoProvider provider;
-    @Getter
+
     private static Set<Command> commands = new HashSet<>();
-    @Getter
     private static Map<String, String> tidbits;
+    private static Map<String, String> teleports;
 
     @Override
     public void onEnable() {
@@ -47,6 +48,10 @@ public class SimpleCommands extends Plugin {
         for (Map.Entry<?, ?> entry : ConfigUtils.loadMapFrom(ConfigUtils.loadResource(getPlugin(), "tidbits.yml")).entrySet()) {
             tidbits.put((String) entry.getKey(), (String) entry.getValue());
         }
+        teleports = new ConcurrentHashMap<>();
+        for (Map.Entry<?, ?> entry : ConfigUtils.loadMapFrom(ConfigUtils.loadResource(getPlugin(), "teleports.yml")).entrySet()) {
+            teleports.put((String) entry.getKey(), (String) entry.getValue());
+        }
     }
 
     private static void registerCommands() {
@@ -57,6 +62,11 @@ public class SimpleCommands extends Plugin {
             String[] names = tidbit.getKey().split("\\|");
             for (String tidbitCommand : names)
                 commands.add(new TidbitCommand(tidbitCommand, tidbit.getValue()));
+        }
+        for (Map.Entry<String, String> teleport : teleports.entrySet()) {
+            String[] names = teleport.getKey().split("\\|");
+            for (String teleportCommand : names)
+                commands.add(new TeleportCommand(teleportCommand, teleport.getValue()));
         }
         for (Command cmd : commands)
             getPlugin().getProxy().getPluginManager().registerCommand(getPlugin(), cmd);
