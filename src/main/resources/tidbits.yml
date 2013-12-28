@@ -1,0 +1,8 @@
+list: "&c[{SERVER}] &e({SERVNUM}): &r{SERVLIST}\n&eTo see all players online, use /glist showall."
+me|tpa|tp: "&cYou don't have permission to do this."
+help: |
+  &eUse &6/stats&e for statistics.
+  &eUse &6/credits&e to view your balance.
+  &eUse &6/rules&e for a link to the rules.
+  &eUse &6/hats&e to view your hats.
+  &eUse &6/pets&e to view your pets.

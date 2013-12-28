@@ -1,0 +1,4 @@
+name: SimpleCommands
+main: me.vemacs.bungee.SimpleCommands
+version: 1
+author: vemacs
