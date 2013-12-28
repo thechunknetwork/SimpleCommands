@@ -12,6 +12,7 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,6 +22,8 @@ public class SimpleCommands extends Plugin {
     private static SimpleCommands plugin;
     @Getter
     private static ServerInfoProvider provider;
+    @Getter
+    private static Map<String, List<String>> blacklist;
 
     private static Set<Command> commands = new HashSet<>();
     private static Map<String, String> tidbits;
@@ -51,6 +54,10 @@ public class SimpleCommands extends Plugin {
         teleports = new ConcurrentHashMap<>();
         for (Map.Entry<?, ?> entry : ConfigUtils.loadMapFrom(ConfigUtils.loadResource(getPlugin(), "teleports.yml")).entrySet()) {
             teleports.put((String) entry.getKey(), (String) entry.getValue());
+        }
+        blacklist = new ConcurrentHashMap<>();
+        for (Map.Entry<?, ?> entry : ConfigUtils.loadMapFrom(ConfigUtils.loadResource(getPlugin(), "blacklist.yml")).entrySet()) {
+            blacklist.put((String) entry.getKey(), (List<String>) entry.getValue());
         }
     }
 
