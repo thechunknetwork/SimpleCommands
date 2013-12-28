@@ -1,6 +1,7 @@
 package me.vemacs.bungee;
 
 import lombok.Getter;
+import me.vemacs.bungee.command.ScCommand;
 import me.vemacs.bungee.command.TidbitCommand;
 import me.vemacs.bungee.misc.ConfigUtils;
 import me.vemacs.bungee.misc.providers.BungeeCordProvider;
@@ -32,6 +33,7 @@ public class SimpleCommands extends Plugin {
         else
             provider = new BungeeCordProvider();
         getLogger().info("Using " + provider.getClass().getSimpleName() + " as provider.");
+        getProxy().getPluginManager().registerCommand(this, new ScCommand("sc"));
         load();
     }
 

@@ -14,8 +14,10 @@ public class ScCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (sender.hasPermission("simplecommands.reload")) {
-            if (args.length > 0 && args[0].equals("reload"))
+            if (args.length > 0 && args[0].equals("reload")) {
                 SimpleCommands.load();
+                sender.sendMessage(TextComponent.fromLegacyText(ChatColor.GREEN + "SimpleCommands reloaded."));
+            }
             else
                 sender.sendMessage(TextComponent.fromLegacyText("Usage: /sc <reload>"));
         } else {
