@@ -19,7 +19,7 @@ public class TeleportCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (!SimpleCommands.getBlacklist().get("teleports").contains(
-                sender instanceof ProxiedPlayer ? ((ProxiedPlayer) sender).getServer().getInfo().getName() : "console"))
+                sender instanceof ProxiedPlayer ? ((ProxiedPlayer) sender).getServer().getInfo().getName().toLowerCase() : "console"))
             if (sender instanceof ProxiedPlayer && ProxyServer.getInstance().getServerInfo(server) != null)
                 ((ProxiedPlayer) sender).connect(ProxyServer.getInstance().getServerInfo(server));
             else {

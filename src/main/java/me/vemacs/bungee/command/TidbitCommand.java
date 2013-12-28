@@ -23,7 +23,7 @@ public class TidbitCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (!SimpleCommands.getBlacklist().get("tidbits").contains(
-                sender instanceof ProxiedPlayer ? ((ProxiedPlayer) sender).getServer().getInfo().getName() : "console")) {
+                sender instanceof ProxiedPlayer ? ((ProxiedPlayer) sender).getServer().getInfo().getName().toLowerCase() : "console")) {
             String serverName = sender instanceof ProxiedPlayer ? ((ProxiedPlayer) sender).getServer().getInfo().getName() : null;
             for (String line : response) {
                 Set<String> onCurrentServer = null;

@@ -11,10 +11,7 @@ import me.vemacs.bungee.misc.providers.ServerInfoProvider;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SimpleCommands extends Plugin {
@@ -57,7 +54,7 @@ public class SimpleCommands extends Plugin {
         }
         blacklist = new ConcurrentHashMap<>();
         for (Map.Entry<?, ?> entry : ConfigUtils.loadMapFrom(ConfigUtils.loadResource(getPlugin(), "blacklist.yml")).entrySet()) {
-            blacklist.put((String) entry.getKey(), (List<String>) entry.getValue());
+            blacklist.put((String) entry.getKey(), lowercase((List<String>) entry.getValue()));
         }
     }
 
@@ -77,5 +74,12 @@ public class SimpleCommands extends Plugin {
         }
         for (Command cmd : commands)
             getPlugin().getProxy().getPluginManager().registerCommand(getPlugin(), cmd);
+    }
+
+    private static List<String> lowercase(List<String> list) {
+        ListIterator<String> iterator = list.listIterator();
+        while (iterator.hasNext())
+            iterator.set(iterator.next().toLowerCase());
+        return list;
     }
 }
