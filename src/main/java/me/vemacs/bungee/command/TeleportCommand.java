@@ -19,12 +19,11 @@ public class TeleportCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (!SimpleCommands.getBlacklist().get("teleports").contains(
-                sender instanceof ProxiedPlayer ? ((ProxiedPlayer) sender).getServer().getInfo().getName().toLowerCase() : "console"))
+                sender instanceof ProxiedPlayer ? ((ProxiedPlayer) sender).getServer().getInfo().getName().toLowerCase() : "console")) {
             if (sender instanceof ProxiedPlayer && ProxyServer.getInstance().getServerInfo(server) != null)
                 ((ProxiedPlayer) sender).connect(ProxyServer.getInstance().getServerInfo(server));
-            else {
-                if (sender instanceof ProxiedPlayer)
-                    ((ProxiedPlayer) sender).chat("/" + getName() + " " + joiner.join(args));
-            }
+        } else if (sender instanceof ProxiedPlayer) {
+            ((ProxiedPlayer) sender).chat("/" + getName() + " " + joiner.join(args));
+        }
     }
 }
