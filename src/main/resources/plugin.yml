@@ -2,4 +2,4 @@ name: SimpleCommands
 main: me.vemacs.bungee.SimpleCommands
 version: 1.2
 author: vemacs
-softdepends: ["RedisBungee"]
+softDepends: ["RedisBungee"]
