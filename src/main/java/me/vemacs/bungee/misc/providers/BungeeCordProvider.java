@@ -7,14 +7,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.HashSet;
 import java.util.Set;
 
-public class BungeeCordProvider implements ServerInfoProvider {
-    private static ProxyServer bungeeCord = SimpleCommands.getPlugin().getProxy();
-
-    @Override
-    public int getTotalPlayerCount() {
-        return bungeeCord.getOnlineCount();
-    }
-
+public class BungeeCordProvider extends ServerInfoProvider {
     @Override
     public Set<String> getPlayersOnServer(String server) {
         Set<String> players = new HashSet<>();

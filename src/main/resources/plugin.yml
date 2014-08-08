@@ -1,5 +1,5 @@
 name: SimpleCommands
 main: me.vemacs.bungee.SimpleCommands
-version: 1.3
+version: 1.4
 author: vemacs
 softDepends: ["RedisBungee"]
