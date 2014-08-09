@@ -16,13 +16,13 @@ public abstract class ServerInfoProvider {
     protected ProxyServer bungeeCord = SimpleCommands.getPlugin().getProxy();
     private SCConnection scConnection = new SCConnection();
     private ListenerInfo listener = bungeeCord.getConfig().getListeners().iterator().next();
-    private ServerPing ping = new ServerPing(
-            new ServerPing.Protocol(bungeeCord.getGameVersion(), bungeeCord.getProtocolVersion()),
-            new ServerPing.Players(listener.getMaxPlayers(), bungeeCord.getOnlineCount(), null),
-            listener.getMotd(), bungeeCord.getConfig().getFaviconObject());
 
     public int getTotalPlayerCount() {
         try {
+            ServerPing ping = new ServerPing(
+                    new ServerPing.Protocol(bungeeCord.getGameVersion(), bungeeCord.getProtocolVersion()),
+                    new ServerPing.Players(listener.getMaxPlayers(), bungeeCord.getOnlineCount(), null),
+                    listener.getMotd(), bungeeCord.getConfig().getFaviconObject());
             return bungeeCord.getPluginManager().callEvent(new ProxyPingEvent(scConnection,
                     ping)).getResponse().getPlayers().getOnline();
         } catch (Exception e) {
