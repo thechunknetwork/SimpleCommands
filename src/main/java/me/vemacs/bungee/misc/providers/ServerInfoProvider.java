@@ -22,6 +22,7 @@ public abstract class ServerInfoProvider {
 
     private int lastCount;
 
+    @SuppressWarnings("deprecation")
     public ServerInfoProvider() {
         callback = new Callback<ProxyPingEvent>() {
             @Override
@@ -33,6 +34,7 @@ public abstract class ServerInfoProvider {
             @Override
             public void run() {
                 ServerPing ping = new ServerPing(
+                        // I personally don't see why these methods are deprecated in the first place
                         new ServerPing.Protocol(bungeeCord.getGameVersion(), bungeeCord.getProtocolVersion()),
                         new ServerPing.Players(listener.getMaxPlayers(), bungeeCord.getOnlineCount(), null),
                         listener.getMotd(), bungeeCord.getConfig().getFaviconObject());
