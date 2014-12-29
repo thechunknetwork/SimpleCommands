@@ -93,6 +93,11 @@ public abstract class ServerInfoProvider {
         }
 
         @Override
+        public boolean isLegacy() {
+            return false;
+        }
+
+        @Override
         public InetSocketAddress getAddress() {
             return addr;
         }
