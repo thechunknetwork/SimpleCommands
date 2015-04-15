@@ -86,6 +86,11 @@ public abstract class ServerInfoProvider {
         }
 
         @Override
+        public void setUniqueId(UUID uuid) {
+
+        }
+
+        @Override
         public boolean isOnlineMode() {
             return bungeeCord.getConfig().isOnlineMode();
         }
